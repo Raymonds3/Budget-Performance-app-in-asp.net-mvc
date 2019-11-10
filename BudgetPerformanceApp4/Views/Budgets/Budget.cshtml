@@ -1,0 +1,137 @@
+﻿@model IEnumerable<BudgetPerformanceApp4.ViewModel.BudgetVM>
+@{
+    ViewBag.Title = "Budget";
+}
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <title>Budgets</title>
+    <!-- Bootstrap -->
+
+</head>
+<body class="nav-md">
+    <div class="right_col" role="main">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Budgets</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="x_content">
+                            <br />
+                            @*<a class="popup btn btn-default" style="margin-bottom:10px" href="~/ProjectAdmin/CreateFaultType"><i class="fa fa-plus-square"></i>Create FaultType</a>*@
+                            @Html.ActionLink("Add Budget", "CreateBudget", "Budgets")
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-striped jambo_table bulk_action col-md-12 col-sm-12 col-xs-12" id="myTable">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th class="column-title">
+                                                    Budget Name/AccountNo
+                                                </th>
+                                                <th class="column-title">
+                                                    Budget Amount
+                                                </th>
+                                                <th class="column-title">
+                                                    Department
+                                                </th>
+                                                <th class="column-title">
+                                                    Program
+                                                </th>
+                                                <th class="column-title">
+                                                    Activity
+                                                </th>
+                                                <th class="column-title">
+                                                    Budget Period
+                                                </th>
+                                                <th class="column-title">
+                                                    Months
+                                                </th>
+                                                <th class="column-title">
+                                                    Start Date
+                                                </th>
+                                                <th class="column-title">
+                                                    End Date
+                                                </th>
+                                                <th class="column-title">
+                                                    Actions
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.BudgetName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.BudgetAmount)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DepartmentId)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ProgramId)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ActivityId)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.BudgetPeriodId)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Months)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.StartDate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.EndDate)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Update", "UpdateBudget", "Budgets", new { id = item.Id }, null)
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*update*@
+
+
+</body>
+
+</html>

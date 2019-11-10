@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BenGribaudoLLC.IEnumerableHelpers.DataReaderAdapter</name>
+    </assembly>
+    <members>
+        <member name="T:BenGribaudoLLC.IEnumerableHelpers.DataReaderAdapter.AdaptToIDataReader">
+            <summary>
+            Allows an <c>IEnumerable{IEnumerable{object}}</c> to be treated as an <seealso cref="T:System.Data.IDataReader"/>. 
+            </summary>
+            <remarks>
+            <para>For details about the various methods, see <seealso cref="T:System.Data.IDataReader"/>'s documentation.</para>
+            <para>
+            Note: The following interface members are not implemented and will throw a <see cref="T:System.NotSupportedException"/> if called.
+            <list type="bullet">
+               <item><description><seealso cref="M:System.Data.IDataRecord.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)"/></description></item>
+               <item><description><seealso cref="M:System.Data.IDataRecord.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)"/></description></item>
+               <item><description><seealso cref="M:System.Data.IDataReader.GetSchemaTable"/></description></item>
+               <item><description><see cref="M:System.Data.IDataRecord.GetData(System.Int32)"/></description></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:BenGribaudoLLC.IEnumerableHelpers.DataReaderAdapter.AdaptToIDataReader.#ctor(System.Collections.Generic.IEnumerator{System.Collections.Generic.IEnumerable{System.Object}},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance.
+            </summary>
+            <param name="source">Data to be exposed as an <seealso cref="T:System.Data.IDataReader"/>.</param>
+            <param name="headers">Header names for fields in <paramref name="source"/>.</param>
+        </member>
+        <member name="T:BenGribaudoLLC.IEnumerableHelpers.DataReaderAdapter.IEnumerableExtensionMethods">
+            <summary>
+            Allows an <seealso cref="T:System.Collections.Generic.IEnumerable`1"/> to be treated as an <seealso cref="T:System.Data.IDataReader"/>. 
+            </summary>
+            <remarks>
+            Note: The following interface members are not implemented 
+            and will throw a <see cref="T:System.NotImplementedException"/> if called.
+            
+            <para>
+            <list type="bullet">
+               <item><description><seealso cref="M:System.Data.IDataRecord.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)"/></description></item>
+               <item><description><seealso cref="M:System.Data.IDataRecord.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)"/></description></item>
+               <item><description><seealso cref="M:System.Data.IDataReader.GetSchemaTable"/></description></item>
+               <item><description><see cref="M:System.Data.IDataRecord.GetData(System.Int32)"/></description></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:BenGribaudoLLC.IEnumerableHelpers.DataReaderAdapter.IEnumerableExtensionMethods.AsDataReader``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Returns the input as an <seealso cref="T:System.Data.IDataReader"/>.
+            </summary>
+            <remarks>
+            Each item in <paramref name="source"/>'s outer <seealso cref="T:System.Collections.Generic.IEnumerable`1"/> becomes a data row whose data fields are 
+            made up of the inner <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>'s contents.
+            <para>Note: If <paramref name="fieldNames"/> is not provided, the adapter will immediately read the first item from 
+            <paramref name="source"/> in order to determine the number of fields it contains. Each subsequent row will be expected to contain at 
+            least this many elements. This read will be cached. The first time <seealso cref="M:System.Data.IDataReader.Read"/> is called, the cached 
+            value will be used instead of trying to reread it from <paramref name="source"/>.</para>
+            </remarks>
+            <param name="source">The sequence to adapt.</param>
+            <param name="fieldNames">Field names whose positions correspond to the items in <paramref name="source"/>'s inner 
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <returns>The input sequence as an <seealso cref="T:System.Data.IDataReader"/>.</returns>
+        </member>
+        <member name="M:BenGribaudoLLC.IEnumerableHelpers.DataReaderAdapter.IEnumerableExtensionMethods.AsDataReaderOfObjects``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the input as an <seealso cref="T:System.Data.IDataReader"/>.
+            </summary>
+            <remarks>
+            Each <typeparamref name="T"/> becomes a data row with each readable public instance property becoming a data field accessible 
+            by both property name (e.g. <c>reader["Column1"]</c>) and an arbitrarily assigned numerical index (e.g. <c>reader[0]</c>). 
+            </remarks>
+            <param name="source">The sequence to adapt.</param>
+            <returns>The input sequence as an <seealso cref="T:System.Data.IDataReader"/>.</returns>
+        </member>
+    </members>
+</doc>
